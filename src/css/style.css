@@ -32,6 +32,12 @@ body {
     background-color: aqua;
 }
 
+.wizard {
+    position: absolute;
+    background-image: url("/src/images/wizard.png");
+    background-size: cover;
+}
+
 .hidden {
     display: none;
 }

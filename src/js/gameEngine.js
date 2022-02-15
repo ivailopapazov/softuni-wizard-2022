@@ -18,6 +18,7 @@ function gameLoop(state, game, timestamp) {
         game.wizardElement.style.backgroundImage = 'url("/src/images/wizard.png")';
     }
     
+
     // Spawn bugs
     if (timestamp > state.bugStats.nextSpawnTimestamp) {
         game.createBug(state.bugStats);
@@ -25,7 +26,8 @@ function gameLoop(state, game, timestamp) {
     }
 
     // Render bugs
-    document.querySelectorAll('.bug').forEach(bug => {
+    let bugElements = document.querySelectorAll('.bug');
+    bugElements.forEach(bug => {
         let posX = parseInt(bug.style.left);
 
         if (posX > 0) {
@@ -38,6 +40,14 @@ function gameLoop(state, game, timestamp) {
     // Render fireballs
     document.querySelectorAll('.fireball').forEach(fireball => {
         let posX = parseInt(fireball.style.left);
+
+        // Detect collision
+        bugElements.forEach(bug => {
+            if (detectCollision(bug, fireball)) {
+                bug.remove();
+                fireball.remove();
+            }
+        });
 
         if (posX > game.gameScreen.offsetWidth) {
             fireball.remove();
@@ -71,4 +81,13 @@ function modifyWizardPosition(state, game) {
     if (state.keys.KeyW) {
         wizard.posY = Math.max(wizard.posY - wizard.speed, 0);
     }
+}
+
+function detectCollision(objectA, objectB) {
+    let first = objectA.getBoundingClientRect();
+    let second = objectB.getBoundingClientRect();
+
+    let hasCollision = !(first.top > second.bottom || first.bottom < second.top || first.right < second.left || first.left > second.right)
+
+    return hasCollision;
 }

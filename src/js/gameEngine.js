@@ -9,13 +9,25 @@ function gameLoop(state, game) {
     const { wizardElement } = game;
     
     // Move wizard
+    if (state.keys.KeyA) {
+        wizard.posX -= wizard.speed;
+    }    
+    
+    if (state.keys.KeyS) {
+        wizard.posY += wizard.speed;
+    }    
+    
     if (state.keys.KeyD) {
-        console.log(state.keys);
-        wizard.posX += 10;
+        wizard.posX += wizard.speed;
     }
+    
+    if (state.keys.KeyW) {
+        wizard.posY -= wizard.speed;
+    } 
 
     // Render
     wizardElement.style.left = wizard.posX + 'px';
+    wizardElement.style.top = wizard.posY + 'px';
     
     window.requestAnimationFrame(gameLoop.bind(null, state, game));
 }

@@ -4,6 +4,7 @@ function initState() {
     
     const state = {
         player: 'Pesho',
+        gameOver: false,
         wizard: {
             width: 82,
             height: 100,

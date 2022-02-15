@@ -35,6 +35,17 @@ function gameLoop(state, game, timestamp) {
         }
     });
 
+    // Render fireballs
+    document.querySelectorAll('.fireball').forEach(fireball => {
+        let posX = parseInt(fireball.style.left);
+
+        if (posX > game.gameScreen.offsetWidth) {
+            fireball.remove();
+        } else {
+            fireball.style.left = posX + state.fireball.speed + 'px';
+        }
+    });
+
     // Render wizard
     wizardElement.style.left = wizard.posX + 'px';
     wizardElement.style.top = wizard.posY + 'px';

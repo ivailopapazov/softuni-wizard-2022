@@ -54,3 +54,9 @@ body {
 .hidden {
     display: none;
 }
+
+.score {
+    position: absolute;
+    top: 10px;
+    left: 200px;
+}

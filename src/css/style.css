@@ -25,3 +25,13 @@ body {
     background-color: green;
     cursor: pointer;
 }
+
+.game-screen {
+    width: 100%;
+    height: 100%;
+    background-color: aqua;
+}
+
+.hidden {
+    display: none;
+}
